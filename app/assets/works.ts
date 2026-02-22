@@ -1,4 +1,4 @@
-import { work } from "../global";
+import { work } from "@/types";
 
 export const works: work[] = [
   {

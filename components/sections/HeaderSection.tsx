@@ -51,7 +51,7 @@ const HeaderSection = () => {
                 </div>
 
                 <p className="text-foreground text-sm md:text-lg max-w-xl leading-relaxed font-light">
-                    I build accessible, high-quality web experiences with a focus on <br/> 
+                    I build <Highlight>accessible</Highlight>, <Highlight>high-quality</Highlight> web experiences with a focus on <br />
                     <Highlight> usability</Highlight> and <Highlight> performance</Highlight>.
                 </p>
 

@@ -1,7 +1,5 @@
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import me from "@/assets/data/me.png"
-import { Code2 } from 'lucide-react';
 const AboutImage = () => {
     return (
         <div className="relative aspect-4/5">
@@ -14,10 +12,8 @@ const AboutImage = () => {
                 priority
             />
             {/* Floating Badge */}
-            <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-8 -right-6 bg-background border border-border p-4 rounded-xl shadow-2xl hidden lg:block"
+            {/* <div
+                className="absolute -bottom-8 -right-6 bg-background border border-border p-4 rounded-xl shadow-2xl animate-bounce transition-all duration-200 hidden lg:block"
             >
                 <div className="flex items-center gap-3">
                     <div className="p-2 bg-primary/10 rounded-lg">
@@ -28,9 +24,8 @@ const AboutImage = () => {
                         <p className="font-bold">Front-End Dev</p>
                     </div>
                 </div>
-            </motion.div>
+            </div> */}
         </div>
-
     )
 }
 

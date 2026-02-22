@@ -62,11 +62,7 @@ const NavLink = ({
             initial={{ opacity: 0, y: 10, x: "-50%" }}
             animate={{ opacity: 1, y: -45, x: "-50%" }}
             exit={{ opacity: 0, y: 10, x: "-50%" }}
-            className="
-                            absolute  
-                            px-3 py-1 rounded-md bg-primary text-secondary-foreground 
-                            text-xs font-medium border shadow-md whitespace-nowrap
-                            pointer-events-none capitalize left-13 -translate-x-1/2"
+            className="absolute px-3 py-1 rounded-md bg-primary text-white text-xs font-medium border shadow-md whitespace-nowrap pointer-events-none capitalize left-13 -translate-x-1/2"
           >
             {link.label}
           </motion.div>
