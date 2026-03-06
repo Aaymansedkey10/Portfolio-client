@@ -1,8 +1,8 @@
 import { CheckCircle2, Calendar, Building2 } from 'lucide-react'
-import { experince } from '@/types/experience';
 import { MotionInView } from '../animations/MotionInView';
+import { experience } from '@/src/types/experience';
 
-const SingleExperience = ({ job_title, company_name, is_current, end_date, start_date, job_role }: experince) => {
+const SingleExperience = ({ job_title, company_name, is_current, end_date, start_date, job_role }: experience) => {
     return (
         <>
             <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 py-2 group w-full border shadow-primary/20 border-secondary rounded-lg p-6 lg:p-10 bg-secondary/10 hover:bg-secondary/50 hover:shadow-md transition-all duration-300 cursor-pointer">

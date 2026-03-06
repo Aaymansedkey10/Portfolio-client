@@ -1,5 +1,5 @@
 
-import { skill } from "@/types/skill";
+import { skill } from "@/src/types/skill";
 import { MotionInView } from "../animations/MotionInView";
 import Image from "next/image";
 interface SingleSkillProps extends skill {

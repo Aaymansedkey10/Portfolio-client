@@ -1,5 +1,5 @@
 
-import { BioChild } from '@/types/about';
+import { BioChild } from '@/src/types/about';
 import { Highlight } from './Highlight';
 
 export const RenderTextChild = ({ child, index }: { child: BioChild; index: number }) => {
