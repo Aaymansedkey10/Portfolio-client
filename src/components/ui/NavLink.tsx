@@ -41,10 +41,8 @@ const NavLink = ({
   const y = mobileBar ? 0 : ySpring;
   const handleClick = () => {
     if (link.label === "Resume") {
-      // لو ريزوميه يفتح في صفحة جديدة
       window.open(link.href, "_blank", "noopener,noreferrer");
     } else {
-      // لو سكشن داخلي يعمل Scroll
       scrollTo(link.href);
     }
   };

@@ -22,7 +22,7 @@ const FallingParticles = () => {
     }, []);
 
     return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none h-svh w-full px-5">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none h-[90svh] lg:h-svh w-full px-5">
             {particles?.map((p) => (
                 <motion.div
                     key={p.id}

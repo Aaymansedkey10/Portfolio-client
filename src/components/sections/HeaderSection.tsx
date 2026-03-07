@@ -1,5 +1,7 @@
 "use client";
-import FallingParticles from "../shared/FallingParticles";
+import { Button } from "../buttons/Button";
+import { useScroll } from "@/src/Hooks/useScroll";
+import FallingParticles from "../animations/FallingParticles";
 import GridBackground from "../ui/GridBackground";
 import AvilableWorking from "../shared/AvailableWorking";
 import ScrollIndicator from "../shared/ScrollIndicator";
@@ -9,19 +11,19 @@ import { AboutServices } from "@/src/services/AboutService";
 import { BioBlock, BioChild } from "@/src/types/about";
 import FrameWorks from "../shared/FrameWorks";
 import { RenderTextChild } from "../shared/RenderTextChild";
-import ButtonLink from "../buttons/ButtonLink";
 import { LayoutGrid, Mail } from "lucide-react";
 const HeaderSection = () => {
-    const { data } = useQuery({
+    const { scrollTo } = useScroll();
+    const { data, isLoading } = useQuery({
         queryKey: ['about'],
         queryFn: () => AboutServices.getAbout(),
     });
 
-    // if (isLoading) return (<>loading from header....</>)
+    if (isLoading) return (<>loading from header....</>)
     const profile = data ? data?.[0] : null;
     if (!profile) return null;
     return (
-        <header id="home" className="flex items-start justify-center min-h-svh container px-4 pt-10">
+        <header id="home" className="flex items-start justify-center h-[77svh] lg:h-svh  container px-4 pt-10">
             <FallingParticles />
             <GridBackground />
             <div className="z-10 flex flex-col items-center justify-center gap-6 text-center px-4">
@@ -52,13 +54,27 @@ const HeaderSection = () => {
                 </MotionInView>
                 <div className="flex items-center justify-center gap-4 pt-6 flex-wrap">
                     <MotionInView direction="left" delay={0.1}>
-                        <ButtonLink label="Works" url="works" icon={LayoutGrid} />
+                        <Button label="Works" func={() => scrollTo("works")} home={true} icon={<LayoutGrid size={20} />} />
                     </MotionInView>
                     <MotionInView direction="right" delay={0.1}>
-                        <ButtonLink label="Contact" url="contact" icon={Mail} />
+                        <Button label="Contact" func={() => scrollTo("contact")} home={true} icon={<Mail size={20} />} />
                     </MotionInView>
                 </div>
             </div>
+
+            {/* <div
+                className="absolute bottom-25 left-1/2 -translate-x-1/2 hidden xl:flex flex-col gap-1 items-center justify-center pt-5"
+            >
+                <p className="text-[10px] font-medium tracking-[0.3em] uppercase text-muted-foreground">Scroll Down</p>
+                <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center mt-6 pt-1 cursor-pointer">
+                    <motion.div
+                        animate={{ y: [0, 4, 0] }}
+                        transition={{ repeat: Infinity, duration: 3 }}
+                        className="w-1 h-3 bg-primary rounded-full" />
+                </div>
+                <div className="w-1 h-3 bg-primary/40 rounded-full"></div>
+
+            </div> */}
             <ScrollIndicator />
         </header>
     );

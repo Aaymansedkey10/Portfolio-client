@@ -1,17 +1,21 @@
-import { ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 
-type Props = {
+type ButtonProps = {
     label: string | ReactNode;
     func?: () => void;
+    icon: ReactElement;
+    home?: boolean;
 };
 
-export const Button = ({ label, func }: Props) => {
+export const Button = ({ label, func, home, icon }: ButtonProps) => {
     return (
         <button
             onClick={func}
-            className="text-white bg-primary w-10 h-10 rounded-full font-bold capitalize cursor-pointer flex items-center justify-center transition-transform duration-300 hover:scale-105"
+            className={`text-white bg-primary  rounded-full h-10 font-bold capitalize cursor-pointer flex items-center justify-center transition-transform duration-300 hover:scale-105 ${home ? "w-[150px] gap-3" : 'w-10 '}`}
         >
-            {label}
+            <span>{icon}</span>
+            <span>{label}</span>
+
         </button>
     );
 };
