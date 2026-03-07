@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode } from "react";
 
 type ButtonProps = {
-    label: string | ReactNode;
+    label?: string;
     func?: () => void;
     icon: ReactElement;
     home?: boolean;

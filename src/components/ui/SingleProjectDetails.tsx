@@ -36,7 +36,7 @@ const SingleWorkDetails = ({
                 {/* Close Button - Fixed for all views */}
                 <div className="absolute top-5 right-5 z-100">
                     <Button
-                        label={<X size={20} />}
+                        icon={<X size={20} />}
                         func={close}
                     />
                 </div>
