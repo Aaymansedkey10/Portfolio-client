@@ -6,22 +6,30 @@ import GridBackground from "../ui/GridBackground";
 import AvilableWorking from "../shared/AvailableWorking";
 import ScrollIndicator from "../shared/ScrollIndicator";
 import { MotionInView } from "../animations/MotionInView";
-import { useQuery } from "@tanstack/react-query";
-import { AboutServices } from "@/src/services/AboutService";
+import { AboutServices } from "@/src/services";
 import { BioBlock, BioChild } from "@/src/types/about";
 import FrameWorks from "../shared/FrameWorks";
 import { RenderTextChild } from "../shared/RenderTextChild";
 import { LayoutGrid, Mail } from "lucide-react";
+import Loading from "@/src/app/Loading";
+import { useQueryCustom } from "@/src/Hooks/useQueryCustom";
+import { Mock_About } from "@/src/constants/Mock_About";
 const HeaderSection = () => {
     const { scrollTo } = useScroll();
-    const { data, isLoading } = useQuery({
-        queryKey: ['about'],
-        queryFn: () => AboutServices.getAbout(),
-    });
+    const { data, isLoading, isError } = useQueryCustom(
+        ["about"],
+        () => AboutServices.getAbout(),
+        Mock_About
+    );
 
-    if (isLoading) return (<>loading from header....</>)
-    const profile = data ? data?.[0] : null;
-    if (!profile) return null;
+    if (isLoading && !data) return <Loading />;
+
+    const profile = data?.[0] || Mock_About[0];
+
+    if (isError && (!data || data.length === 0)) {
+        throw new Error("API Limit Reached and no Mock Data found");
+    }
+
     return (
         <header id="home" className="flex items-start justify-center h-[77svh] lg:h-svh  container px-4 pt-10">
             <FallingParticles />

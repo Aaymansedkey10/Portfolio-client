@@ -10,6 +10,10 @@ export interface skill {
   icon: StrapiImage;
 }
 
+export interface Mock_SkillsInterface {
+  data: skill[];
+}
+
 export interface ProjectSkill {
   id: number;
   documentId: string;

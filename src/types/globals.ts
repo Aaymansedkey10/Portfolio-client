@@ -43,3 +43,14 @@ export interface StrapiImage {
   updatedAt: string;
   publishedAt: string;
 }
+
+export interface pagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
+}
+
+export interface MetaPagiantion {
+  pagination: pagination;
+}

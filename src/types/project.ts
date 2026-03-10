@@ -8,6 +8,9 @@ export interface ProjectSkill {
   publishedAt: string;
   label: string;
 }
+export interface Mock_ProjectsInterface {
+  data: Project[];
+}
 
 export interface Project {
   id: number;

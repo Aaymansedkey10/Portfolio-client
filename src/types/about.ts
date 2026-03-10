@@ -13,7 +13,9 @@ export interface BioBlock {
   format?: "ordered" | "unordered";
   children: BioChild[];
 }
-
+export interface Mock_AboutInterface {
+  data: AboutData[];
+}
 export interface AboutData {
   id: number;
   documentId: string;

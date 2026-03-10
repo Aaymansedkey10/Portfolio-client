@@ -4,6 +4,9 @@ export interface Role {
   __component: string;
 }
 
+export interface Mock_ExperinceInterface {
+  data: experience[];
+}
 export interface experience {
   id: number;
   is_current: boolean;

@@ -5,20 +5,27 @@ import { User, MapPin, GraduationCap, Code2 } from "lucide-react";
 import AboutImage from "../ui/AboutImage";
 import QuickInfoCard from "../shared/QuickInfoCard";
 import { MotionInView } from "../animations/MotionInView";
-import { useQuery } from "@tanstack/react-query";
-import { AboutServices } from "@/src/services/AboutService";
-import { AboutData, BioBlock, BioChild } from "@/src/types/about";
+import { BioBlock, BioChild } from "@/src/types/about";
 import { RenderTextChild } from "../shared/RenderTextChild";
+import Loading from "@/src/app/Loading";
+import { AboutServices } from "@/src/services";
+import { useQueryCustom } from "@/src/Hooks/useQueryCustom";
+import { Mock_About } from "@/src/constants/Mock_About";
 
 const AboutSection = () => {
-    const { data } = useQuery<AboutData[] | null>({
-        queryKey: ["about"],
-        queryFn: () => AboutServices.getAbout(),
-    });
+    const { data, isLoading, isError } = useQueryCustom(
+        ["about"],
+        () => AboutServices.getAbout(),
+        Mock_About
+    );
 
+    if (isLoading && !data) return <Loading />;
 
-    const profile = data ? data?.[0] : null;
-    if (!profile) return null;
+    const profile = data?.[0] || Mock_About[0];
+
+    if (isError && (!data || data.length === 0)) {
+        throw new Error("API Limit Reached and no Mock Data found");
+    }
 
     return (
         <section id="about" className="py-24 relative overflow-hidden">

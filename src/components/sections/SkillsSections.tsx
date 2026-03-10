@@ -1,15 +1,23 @@
 "use client"
-import { useQuery } from "@tanstack/react-query";
 import SingleSkill from "../ui/SingleSkill"
 import Title from "../shared/SectionTitle"
-import SkillsService from "@/src/services/SkillsServices";
 import { skill } from "@/src/types/skill";
+import Loading from "@/src/app/Loading";
+import SkillsService from "@/src/services/SkillsServices";
+import { useQueryCustom } from "@/src/Hooks/useQueryCustom";
+import { Mock_Skills } from "@/src/constants/Mock_Skills";
 
 const SkillsSections = () => {
-    const { data: skills } = useQuery({
-        queryKey: ["skills"],
-        queryFn: SkillsService.getAllSkills,
-    });
+    const { data: skills, isLoading, isError } = useQueryCustom(
+        ['skills'],
+        SkillsService.getAllSkills,
+        Mock_Skills
+    );
+
+    if (isLoading && !skills) return <Loading />;
+    if (isError && (!skills || skills.length === 0)) {
+        throw new Error("API Limit Reached and no Mock Data found");
+    }
     return (
         <section id="skills" className="py-20 px-6">
             <Title title="my skills" />

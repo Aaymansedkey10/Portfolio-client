@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import NavigationBar from "../components/layout/NavigationBar";
-import Footer from "../components/layout/Footer";
 import { ThemeProvider } from "../Providers/Theme-Provider";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import QueryProvider from "@/src/Providers/QueryProvider";
@@ -36,7 +35,6 @@ export default function RootLayout({
             <NavigationBar />
             {children}
             {/* <ButtonsTop /> */}
-            <Footer />
           </QueryProvider>
         </ThemeProvider>
       </body>

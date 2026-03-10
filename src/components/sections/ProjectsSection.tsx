@@ -1,7 +1,5 @@
 "use client";
 import Title from "../shared/SectionTitle";
-import { useQuery } from "@tanstack/react-query";
-import ProjectService from "@/src/services/ProjectsServices";
 import { Project } from "@/src/types/project";
 import { SingleProject } from "../ui";
 import { Github } from "lucide-react";
@@ -10,16 +8,24 @@ import ScaleMotion from "../animations/ScaleMotion";
 import ButtonLink from "../buttons/ButtonLink";
 import { useState } from "react";
 import SingleWorkDetails from "../ui/SingleProjectDetails";
-
+import Loading from "@/src/app/Loading";
+import ProjectService from "@/src/services/ProjectsServices";
+import { useQueryCustom } from "@/src/Hooks/useQueryCustom";
+import { Mock_Projects } from "@/src/constants/Mock_Projects";
 
 const ProjectsSection = () => {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-    const { data: projects } = useQuery({
-        queryKey: ['projects'],
-        queryFn: ProjectService.getAllProjects,
-    });
+    const { data: projects, isLoading, isError } = useQueryCustom(
+        ['projects'],
+        ProjectService.getAllProjects,
+        Mock_Projects
+    );
 
+    if (isError && (!projects || projects.length === 0)) {
+        throw new Error("API Limit Reached and no Mock Data found");
+    }
 
+    if (isLoading && !projects) return <Loading />;
     return (
         <motion.section
             initial={{ opacity: 0, y: 80 }}
@@ -38,12 +44,10 @@ const ProjectsSection = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
                 {projects?.map((project: Project, index: number) => {
                     if (project.featured) return (
-                        // <SingleProject key={index} project={project} />
                         <SingleProject
                             key={project.id || index}
                             project={project}
                             index={index}
-                            // 2. بنمرر وظيفة الفتح للـ child
                             onOpenDetails={() => setSelectedProject(project)}
                         />
                     )
