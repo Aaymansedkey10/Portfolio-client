@@ -34,7 +34,6 @@ export default function RootLayout({
             <CustomCursor />
             <NavigationBar />
             {children}
-            {/* <ButtonsTop /> */}
           </QueryProvider>
         </ThemeProvider>
       </body>
