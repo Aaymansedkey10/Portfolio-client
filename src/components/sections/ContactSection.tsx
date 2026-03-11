@@ -5,7 +5,7 @@ import SingleContactLink from '../shared/SingleContactLink';
 const ContactSection = () => {
 
     return (
-        <section id='contact' className="py-24 relative overflow-hidden">
+        <section id='contact' className="py-24 relative overflow-hidden mb-5">
             <Title
                 title="Let's work together."
                 description="Have a project in mind, an opportunity, or just want to say Hi?"
