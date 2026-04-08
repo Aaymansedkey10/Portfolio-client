@@ -4161,7 +4161,7 @@ export const Mock_Projects: Project[] = [
     documentId: "ox2w4pm59l67n5gv73wbikee",
     title: "E-Commerce Website",
     github_link: "https://github.com/Aaymansedkey10/React-Ecommerce-app ",
-    live_link: "https://react-ecommerce-app-sepia.vercel.app/",
+    live_link: "https://react-ecommerce-app-kappa-olive.vercel.app/",
     createdAt: "2026-01-24T09:36:43.257Z",
     updatedAt: "2026-03-02T22:05:02.543Z",
     publishedAt: "2026-03-02T22:05:02.574Z",
