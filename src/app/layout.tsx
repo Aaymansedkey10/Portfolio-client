@@ -4,8 +4,8 @@ import NavigationBar from "../components/layout/NavigationBar";
 import { ThemeProvider } from "../Providers/Theme-Provider";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import QueryProvider from "@/src/Providers/QueryProvider";
-// import { Analytics } from "@vercel/analytics/next"
-// import CustomCursor from "../components/ui/CustomerCursor";
+import CustomCursor from "../components/ui/CustomerCursor";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ayman-front-portfolio.vercel.app'),
@@ -33,7 +33,7 @@ export default function RootLayout({
       <body className={`antialiased px-5 lg:px-25 ${jakarta.variable} bg-background text-foreground 
         selection:bg-primary/30 selection:text-primary/90
       `}>
-        {/* <Analytics /> */}
+        <Analytics />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -41,7 +41,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <QueryProvider>
-            {/* <CustomCursor /> */}
+            <CustomCursor />
             <NavigationBar />
             {children}
           </QueryProvider>
