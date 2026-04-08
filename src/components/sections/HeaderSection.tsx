@@ -6,33 +6,35 @@ import GridBackground from "../ui/GridBackground";
 import AvilableWorking from "../shared/AvailableWorking";
 import ScrollIndicator from "../shared/ScrollIndicator";
 import { MotionInView } from "../animations/MotionInView";
-import { AboutServices } from "@/src/services";
+// import { AboutServices } from "@/src/services";
 import { BioBlock, BioChild } from "@/src/types/about";
 import FrameWorks from "../shared/FrameWorks";
 import { RenderTextChild } from "../shared/RenderTextChild";
 import { LayoutGrid, Mail } from "lucide-react";
 import Loading from "@/src/app/Loading";
-import { useQueryCustom } from "@/src/Hooks/useQueryCustom";
+// import { useQueryCustom } from "@/src/Hooks/useQueryCustom";
 import { Mock_About } from "@/src/constants/Mock_About";
+import { useMockDataHook } from "@/src/Hooks/useMockData";
 const HeaderSection = () => {
     const { scrollTo } = useScroll();
-    const { data, isLoading, isError } = useQueryCustom(
-        ["about"],
-        () => AboutServices.getAbout(),
-        Mock_About
-    );
+    const { data, isLoading, isError } = useMockDataHook()
+    // const { data, isLoading, isError } = useQueryCustom(
+    //     ["about"],
+    //     () => AboutServices.getAbout(),
+    //     Mock_About
+    // );
 
     if (isLoading && !data) return <Loading />;
 
-    const profile = data?.[0] || Mock_About[0];
+    const profile = data?.about[0] || Mock_About[0];
 
-    if (isError && (!data || data.length === 0)) {
+    if (isError && (!data || data.about.length === 0)) {
         throw new Error("API Limit Reached and no Mock Data found");
     }
 
     return (
         <header id="home" className="flex items-start justify-center h-[77svh] lg:h-svh  container px-4 pt-10">
-            <FallingParticles />
+            {/* <FallingParticles /> */}
             <GridBackground />
             <div className="z-10 flex flex-col items-center justify-center gap-6 text-center px-4">
                 <div className="space-y-3">
@@ -41,9 +43,9 @@ const HeaderSection = () => {
                         Hello, I&apos;m
                     </span>
                     <h1 className="text-5xl md:text-6xl  lg:text-8xl font-black tracking-wide text-transparent bg-clip-text bg-linear-to-b py-5 from-secondary to-primary">
-                        {data ? data[0].full_name : "Ayman Sedkey"}
+                        {data ? data.about[0].full_name : "Ayman Sedkey"}
                     </h1>
-                    <FrameWorks frames={data ? data[0].frameworks : []} />
+                    <FrameWorks frames={data ? data.about[0].frameworks : []} />
                 </div>
                 <MotionInView direction="up" delay={0.2}>
                     <p className="text-foreground text-sm md:text-lg max-w-3xl leading-relaxed font-light">

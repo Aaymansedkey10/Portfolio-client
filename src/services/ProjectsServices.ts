@@ -1,11 +1,11 @@
-import axiosInstance from "@/src/lib/axios";
+// import axiosInstance from "@/src/lib/axios";
 
-const ProjectService = {
-  getAllProjects: async () => {
-    const { data } = await axiosInstance.get("/projects");
-    if (!data || !data.data) return null;
-    return data.data;
-  },
-};
+// const ProjectService = {
+//   getAllProjects: async () => {
+//     const { data } = await axiosInstance.get("/projects");
+//     if (!data || !data.data) return null;
+//     return data.data;
+//   },
+// };
 
-export default ProjectService;
+// export default ProjectService;

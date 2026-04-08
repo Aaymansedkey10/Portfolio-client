@@ -9,7 +9,7 @@ interface SliderProps {
   speed?: number;
 }
 
-export const SkillSlider = ({ items, direction = "left", speed = 30 }: SliderProps) => {
+export const SkillSlider = ({ items, direction = "left", speed = 60 }: SliderProps) => {
   const duplicatedItems = [...items, ...items, ...items];
 
   return (

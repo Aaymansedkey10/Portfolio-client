@@ -1,13 +1,13 @@
-import axiosInstance from "@/src/lib/axios";
-import { AboutData } from "@/src/types/about";
+// import axiosInstance from "@/src/lib/axios";
+// import { AboutData } from "@/src/types/about";
 
-const AboutServices = {
-  getAbout: async () => {
-    const { data } = await axiosInstance.get("/abouts");
-    if (!data || !data.data) return null;
-    const about: AboutData[] = data.data;
-    return about;
-  },
-};
+// const AboutServices = {
+//   getAbout: async () => {
+//     const { data } = await axiosInstance.get("/abouts");
+//     if (!data || !data.data) return null;
+//     const about: AboutData[] = data.data;
+//     return about;
+//   },
+// };
 
-export default AboutServices;
+// export default AboutServices;

@@ -13,9 +13,9 @@ interface singleProjectProps {
 
 const SingleProject = ({ project, index, onOpenDetails }: singleProjectProps) => {
     if (!project) return null;
-    const { title, github_link, live_link, banner } = project;
+    const { title, github_link, live_link, banner, featured } = project;
     const direction = index % 2 === 0 ? "left" : "right";
-
+    if (!featured) return;
     return (
         <div className="single-project w-full">
             <MotionInView direction={direction} key={index}>
@@ -26,9 +26,19 @@ const SingleProject = ({ project, index, onOpenDetails }: singleProjectProps) =>
                     <Image
                         src={banner?.url || banner?.formats?.thumbnail?.url || "/placeholder.png"}
                         alt={`${title} project preview`}
-                        width={banner.width}
-                        height={banner.height}
+                        fill
+                        // 1. أهم سطر للـ Performance: بيحدد حجم الصورة بناءً على عرض الشاشة
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
+                        // 2. الجودة المثالية (75 هي الـ Default وهي ممتازة جداً)
+                        quality={75}
+
+                        // 3. التنسيق والـ Animations
                         className="object-cover object-top transition-transform duration-700 ease-in-out group-hover:scale-110 group-hover:rotate-1"
+
+                        // 4. الـ Blur Placeholder عشان الـ CLS والـ User Experience
+                        placeholder="blur"
+                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+ZNPQAIXwMwFByNxgAAAABJRU5ErkJggg=="
                     />
                     {/* Overlay on Hover */}
                     <div className="absolute inset-0 bg-black/80 backdrop-blur-xs flex flex-col items-center justify-center z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

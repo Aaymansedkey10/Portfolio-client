@@ -8,22 +8,19 @@ import { MotionInView } from "../animations/MotionInView";
 import { BioBlock, BioChild } from "@/src/types/about";
 import { RenderTextChild } from "../shared/RenderTextChild";
 import Loading from "@/src/app/Loading";
-import { AboutServices } from "@/src/services";
-import { useQueryCustom } from "@/src/Hooks/useQueryCustom";
+// import { AboutServices } from "@/src/services";
+// import { useQueryCustom } from "@/src/Hooks/useQueryCustom";
 import { Mock_About } from "@/src/constants/Mock_About";
+import { useMockDataHook } from "@/src/Hooks/useMockData";
 
 const AboutSection = () => {
-    const { data, isLoading, isError } = useQueryCustom(
-        ["about"],
-        () => AboutServices.getAbout(),
-        Mock_About
-    );
+    const { data, isLoading, isError } = useMockDataHook()
 
     if (isLoading && !data) return <Loading />;
 
-    const profile = data?.[0] || Mock_About[0];
+    const profile = data?.about[0] || Mock_About[0];
 
-    if (isError && (!data || data.length === 0)) {
+    if (isError && (!data || data.about.length === 0)) {
         throw new Error("API Limit Reached and no Mock Data found");
     }
 
@@ -36,8 +33,7 @@ const AboutSection = () => {
                     <div className="hidden lg:block lg:col-span-4">
                         <MotionInView direction="left">
                             <AboutImage
-                                url={profile.profile_photo?.url || ""}
-                                alternate={profile.full_name}
+                                {...profile.profile_photo}
                             />
                         </MotionInView>
                     </div>

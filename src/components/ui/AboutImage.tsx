@@ -1,15 +1,16 @@
+import { StrapiImage } from '@/src/types/globals';
 import { Code2 } from 'lucide-react';
 import Image from 'next/image';
-const AboutImage = ({ url, alternate }: { url: string; alternate?: string }) => {
+const AboutImage = ({ alternativeText, url }: StrapiImage) => {
     return (
         <div className="relative aspect-4/5 group">
             <Image
                 src={url}
-                alt={alternate || "Ayman Sedkey"}
-                width={300}
-                height={300}
+                alt={alternativeText || "Ayman Sedkey"}
+                fill
                 className="object-cover object-center cursor-pointer transition-all duration-700 group-hover:scale-102"
-                quality={90}
+                // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 priority
             />
             {/* Floating Badge */}
