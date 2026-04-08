@@ -17,17 +17,17 @@ const SingleProject = ({ project, index, onOpenDetails }: singleProjectProps) =>
     const direction = index % 2 === 0 ? "left" : "right";
 
     return (
-        <div className="single-project w-full shadow-sm shadow-primary/50 rounded-xl transition-all duration-300 hover:scale-102">
+        <div className="single-project w-full">
             <MotionInView direction={direction} key={index}>
-                <div className="group relative border-none bg-secondary/30 rounded-xl transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 overflow-hidden h-[280px] cursor-pointer"
+                <div className="group relative border-none bg-secondary/30 rounded-xl transition-all duration-500 overflow-hidden h-[280px] shadow-sm shadow-primary/30 hover:scale-102 cursor-pointer"
                     onClick={onOpenDetails}
                 >
                     {/* Project Image */}
                     <Image
                         src={banner?.url || banner?.formats?.thumbnail?.url || "/placeholder.png"}
                         alt={`${title} project preview`}
-                        fill
-                        priority={index < 2}
+                        width={banner.width}
+                        height={banner.height}
                         className="object-cover object-top transition-transform duration-700 ease-in-out group-hover:scale-110 group-hover:rotate-1"
                     />
                     {/* Overlay on Hover */}

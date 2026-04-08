@@ -30,7 +30,7 @@ export interface StrapiImage {
     small?: ImageFormat;
     medium?: ImageFormat;
     large?: ImageFormat;
-  };
+  } | null;
   hash: string;
   ext: string;
   mime: string;

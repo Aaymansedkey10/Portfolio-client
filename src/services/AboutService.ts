@@ -3,7 +3,7 @@ import { AboutData } from "@/src/types/about";
 
 const AboutServices = {
   getAbout: async () => {
-    const { data } = await axiosInstance.get("/abouts?populate=*");
+    const { data } = await axiosInstance.get("/abouts");
     if (!data || !data.data) return null;
     const about: AboutData[] = data.data;
     return about;

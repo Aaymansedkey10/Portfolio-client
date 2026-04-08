@@ -41,7 +41,9 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary);
 }
-
+.skill-slider-container:hover .skill-slider-content {
+  animation-play-state: paused !important;
+}
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

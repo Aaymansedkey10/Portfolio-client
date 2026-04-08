@@ -53,7 +53,7 @@ const SingleWorkDetails = ({
                     </div>
 
                     {/* Right Side: Content */}
-                    <div className="lg:col-span-5 h-[50vh] lg:h-full flex flex-col bg-card">
+                    <div className="lg:col-span-5 h-[50vh] lg:h-[90vh] flex flex-col bg-card">
                         <div className="p-6 md:p-10 overflow-y-auto flex-1 custom-scrollbar">
                             <span className="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
                                 Featured Project

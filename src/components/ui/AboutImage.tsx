@@ -6,11 +6,11 @@ const AboutImage = ({ url, alternate }: { url: string; alternate?: string }) => 
             <Image
                 src={url}
                 alt={alternate || "Ayman Sedkey"}
-                width={400}
-                height={400}
+                width={300}
+                height={300}
                 className="object-cover object-center cursor-pointer transition-all duration-700 group-hover:scale-102"
-            // quality={90}
-            // priority
+                quality={90}
+                priority
             />
             {/* Floating Badge */}
             <div

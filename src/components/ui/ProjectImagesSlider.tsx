@@ -25,9 +25,12 @@ const ProjectImagesSlider = ({ currentImage, nextImage, prevImage, project }: Pr
                     <Image
                         src={project.images[currentImage]?.url || "/placeholder.png"}
                         alt={project.title}
-                        fill
+                        width={400}
+                        height={300}
+                        // width={project.images[currentImage]?.width || 400}
+                        // height={project.images[currentImage]?.height || 400}
                         className="object-contain p-4 drop-shadow-2xl"
-                        unoptimized
+                        priority={currentImage === 0}
                     />
                 </motion.div>
             </AnimatePresence>

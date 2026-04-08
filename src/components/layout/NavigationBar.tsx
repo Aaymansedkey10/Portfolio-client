@@ -36,7 +36,7 @@ const NavigationBar = () => {
         <ul
           onMouseMove={(e) => mouseX.set(e.pageX)}
           onMouseLeave={() => mouseX.set(Infinity)}
-          className="flex items-end gap-6 bg-background/80 backdrop-blur px-6 py-4 rounded-full border shadow-2xl"
+          className="flex items-end gap-6 bg-background/80 backdrop-blur px-6 py-2 rounded-full border shadow-2xl"
         >
           {NavLinks.map((item) => (
             <NavLink

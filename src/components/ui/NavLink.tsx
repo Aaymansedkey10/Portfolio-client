@@ -30,7 +30,7 @@ const NavLink = ({
   });
 
   const scaleTransform = useTransform(distance, [-120, 0, 120], [1, 1.2, 1]);
-  const yTransform = useTransform(distance, [-120, 0, 120], [0, -10, 0]);
+  const yTransform = useTransform(distance, [-120, 0, 120], [0, -5, 0]);
   const scaleSpring = useSpring(scaleTransform, {
     stiffness: 300,
     damping: 25,
@@ -53,7 +53,7 @@ const NavLink = ({
       onClick={() => handleClick()}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      whileHover={mobileBar ? { scale: 1.1 } : { scale: 1.1 }}
+      whileHover={{ scale: 1.1 }}
       aria-label={link.label}
       className="
                 relative
