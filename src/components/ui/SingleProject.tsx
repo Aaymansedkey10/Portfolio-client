@@ -1,93 +1,123 @@
+"use client";
 import Image from "next/image";
-import { CodeXml, Info, Link as LinkIcon } from "lucide-react";
+import { CodeXml, Link as LinkIcon } from "lucide-react";
 import Link from 'next/link';
 import { Project } from "@/src/types/project";
 import { MotionInView } from "../animations/MotionInView";
+import { motion } from "framer-motion";
 
-
-interface singleProjectProps {
+interface SingleProjectProps {
     project: Project;
     index: number;
-    onOpenDetails: () => void
+    onOpenDetails: () => void;
 }
 
-const SingleProject = ({ project, index, onOpenDetails }: singleProjectProps) => {
-    if (!project) return null;
-    const { title, github_link, live_link, banner, featured } = project;
+const SingleProject = (
+    { project, index, onOpenDetails }: SingleProjectProps) => {
+
+    if (!project || !project.featured) return null;
+
+    const { title, github_link, live_link, banner, skills } = project;
     const direction = index % 2 === 0 ? "left" : "right";
-    if (!featured) return;
+    const duplicatedSkills = skills ? [...skills, ...skills] : [];
+
     return (
-        <div className="single-project w-full">
-            <MotionInView direction={direction} key={index}>
-                <div className="group relative border-none bg-secondary/30 rounded-xl transition-all duration-500 overflow-hidden h-[280px] shadow-sm shadow-primary/30 hover:scale-102 cursor-pointer"
+        <article className="w-full h-full">
+            <MotionInView direction={direction} delay={index * 0.1}>
+                <div
+                    className="group relative bg-secondary/20 rounded-2xl transition-all duration-500 overflow-hidden h-80 border border-border/50 hover:border-primary/20 shadow-lg hover:shadow-primary/10 cursor-pointer"
                     onClick={onOpenDetails}
                 >
-                    {/* Project Image */}
                     <Image
                         src={banner?.url || banner?.formats?.thumbnail?.url || "/placeholder.png"}
-                        alt={`${title} project preview`}
+                        alt={`${title} Preview`}
                         fill
-                        // 1. أهم سطر للـ Performance: بيحدد حجم الصورة بناءً على عرض الشاشة
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-
-                        // 2. الجودة المثالية (75 هي الـ Default وهي ممتازة جداً)
-                        quality={75}
-
-                        // 3. التنسيق والـ Animations
-                        className="object-cover object-top transition-transform duration-700 ease-in-out group-hover:scale-110 group-hover:rotate-1"
-
-                        // 4. الـ Blur Placeholder عشان الـ CLS والـ User Experience
-                        placeholder="blur"
-                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+ZNPQAIXwMwFByNxgAAAABJRU5ErkJggg=="
+                        priority={index < 2}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                        className="object-cover object-top transition-transform duration-1000 ease-out group-hover:scale-110 group-hover:rotate-1"
                     />
-                    {/* Overlay on Hover */}
-                    <div className="absolute inset-0 bg-black/80 backdrop-blur-xs flex flex-col items-center justify-center z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <h2 className="text-xl font-bold text-white mb-4 text-wrap px-5 text-center">{title}</h2>
+
+                    {/* Gradient Overlay on the card */}
+                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500 z-10" />
+
+                    {/* Hover Content */}
+                    <div className="absolute inset-0 z-20 p-6 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center gap-4 transition-all duration-600 translate-y-100 group-hover:translate-y-0 backdrop-blur-sm bg-background/40">
+                        <h3 className="text-2xl font-black text-secondary-foreground text-center">
+                            {title}
+                        </h3>
+
+                        {/* Quick Actions */}
                         <div className="flex items-center gap-4">
-                            {/* GitHub */}
                             {github_link && (
                                 <Link
                                     href={github_link}
                                     target="_blank"
-                                    rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
-                                    className="p-3 rounded-full bg-white/10 text-white border border-white/20 hover:bg-white hover:text-black transition-all duration-300 shadow-xl"
-                                    title="View Code"
+                                    className="p-3 rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-all duration-300 border border-white/20"
+                                    title="View Source Code"
                                 >
-                                    <CodeXml size={22} />
+                                    <CodeXml size={20} />
                                 </Link>
                             )}
 
-                            {/* Live Demo */}
+                            {/* <button
+                                    onClick={(e) => { e.stopPropagation(); onOpenDetails(); }}
+                                    className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground font-bold flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary/30"
+                                >
+                                    <ExternalLink size={18} />
+                                    Details
+                                </button> */}
+
                             {live_link && (
                                 <Link
                                     href={live_link}
                                     target="_blank"
-                                    rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
-                                    className="p-3 rounded-full bg-primary text-white shadow-lg shadow-primary/40 hover:scale-110 active:scale-95 transition-all duration-300"
+                                    className="p-3 rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-all duration-300 border border-white/20"
                                     title="Live Demo"
                                 >
-                                    <LinkIcon size={22} />
+                                    <LinkIcon size={20} />
                                 </Link>
                             )}
-
-                            {/* More Info in modal */}
-                            <button
-                                className="p-3 rounded-full bg-white/5 text-white border border-white/10 hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-xl backdrop-blur-md"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    onOpenDetails();
-                                }}
-                                title="Project Details"
-                            >
-                                <Info size={22} />
-                            </button>
                         </div>
+
+                        {/* Tech Stack Marquee on Hover */}
+
+                        <div
+                            className="relative w-full overflow-hidden pt-4"
+                            style={{
+                                maskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)',
+                                WebkitMaskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)'
+                            }}
+                        >
+                            <motion.div
+                                className="flex gap-3 w-max"
+                                animate={{ x: ["0%", "-50%"] }}
+                                transition={{
+                                    duration: 20,
+                                    repeat: Infinity,
+                                    ease: "linear",
+                                }}
+                            >
+                                {duplicatedSkills.map((tech, idx) => (
+                                    <span
+                                        key={idx}
+                                        className="px-3 py-1 bg-white/10 border border-white/10 text-white/90 text-[10px] uppercase tracking-widest rounded-md whitespace-nowrap backdrop-blur-md"
+                                    >
+                                        {tech.label}
+                                    </span>
+                                ))}
+                            </motion.div>
+                        </div>
+                    </div>
+
+                    {/* Bottom Title (Visible when not hovered) */}
+                    <div className="absolute bottom-0 left-0 right-0 p-5 z-15 group-hover:opacity-0 transition-opacity duration-300">
+                        <p className="text-white font-bold text-lg truncate drop-shadow-md">{title}</p>
                     </div>
                 </div>
             </MotionInView>
-        </div>
+        </article>
     );
 };
 

@@ -3,11 +3,9 @@ import Title from "../shared/SectionTitle";
 import { Project } from "@/src/types/project";
 import { SingleProject } from "../ui";
 import { Github } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
 import ScaleMotion from "../animations/ScaleMotion";
 import ButtonLink from "../buttons/ButtonLink";
 import { useState } from "react";
-import SingleWorkDetails from "../ui/SingleProjectDetails";
 import Loading from "@/src/app/Loading";
 // import ProjectService from "@/src/services/ProjectsServices";
 // import { useQueryCustom } from "@/src/Hooks/useQueryCustom";
@@ -31,15 +29,7 @@ const ProjectsSection = () => {
     if (isLoading && !data.projects) return <Loading />;
     return (
         <MotionInView delay={0.1} direction="up" >
-            <section
-                // initial={{ opacity: 0, y: 80 }}
-                // whileInView={{ opacity: 1, y: 0 }}
-                // viewport={{ once: true, amount: 0.2 }}
-                // transition={{
-                //     duration: 0.8,
-                //     ease: "easeInOut",
-                // }}
-                id="works" className="container">
+            <section id="works" className="container">
                 <Title
                     title="My Projects."
                     description="A collection of my projects as a Frontend Developer."
@@ -68,14 +58,6 @@ const ProjectsSection = () => {
                         />
                     </ScaleMotion>
                 </div>
-                <AnimatePresence>
-                    {selectedProject && (
-                        <SingleWorkDetails
-                            project={selectedProject}
-                            close={() => setSelectedProject(null)}
-                        />
-                    )}
-                </AnimatePresence>
             </section >
         </MotionInView>
     );

@@ -26,7 +26,7 @@ export const MotionInView = ({ children, direction = "left", delay = 0, once = f
         <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={variants}
             transition={{
                 duration: 0.8,

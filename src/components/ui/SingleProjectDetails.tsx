@@ -1,5 +1,5 @@
 "use client";
-import { X, ExternalLink, Github } from "lucide-react";
+import { X, ExternalLink, Github, Layers, Info } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Project } from "@/src/types/project";
@@ -23,27 +23,34 @@ const SingleWorkDetails = ({
 
     return (
         <div
-            className="fixed inset-0 bg-background/80 backdrop-blur-xl z-100 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-100 flex justify-end"
             onClick={close}
         >
             <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                className="bg-card border border-border rounded-[2.5rem] max-w-6xl w-full relative overflow-hidden h-[90vh] shadow-2xl flex flex-col lg:flex-row"
+                initial={{ x: "100%" }} // بيبدأ من بره الشاشة يمين
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="bg-card/95 backdrop-blur-2xl border-l border-border w-full max-w-2xl h-full shadow-2xl relative flex flex-col"
                 onClick={(e) => e.stopPropagation()}
             >
-                {/* Close Button - Fixed for all views */}
-                <div className="absolute top-5 right-5 z-100">
+                {/* Header Section */}
+                <div className="p-6 flex items-center justify-between border-b border-border bg-muted/30">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                            <Layers size={22} />
+                        </div>
+                        <h2 className="text-xl font-bold text-foreground">Project Overview</h2>
+                    </div>
                     <Button
                         icon={<X size={20} />}
                         func={close}
                     />
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 w-full h-full">
-                    {/* Left Side: Image Slider  */}
-                    <div className="lg:col-span-7 bg-muted/20 relative h-[40vh] lg:h-full border-b lg:border-b-0 lg:border-r border-border">
+                <div className="flex-1 overflow-y-auto custom-scrollbar">
+                    {/* Image Section */}
+                    <div className="h-[300px] md:h-[400px] relative bg-muted/20">
                         <ProjectImagesSlider
                             currentImage={currentImage}
                             nextImage={nextImage}
@@ -52,68 +59,63 @@ const SingleWorkDetails = ({
                         />
                     </div>
 
-                    {/* Right Side: Content */}
-                    <div className="lg:col-span-5 h-[50vh] lg:h-[90vh] flex flex-col bg-card">
-                        <div className="p-6 md:p-10 overflow-y-auto flex-1 custom-scrollbar">
-                            <span className="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
-                                Featured Project
+                    {/* Content Section */}
+                    <div className="p-8 space-y-10">
+                        <div>
+                            <span className="text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-2 block">
+                                Case Study
                             </span>
-                            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-8 leading-tight">
+                            <h2 className="text-4xl font-black text-foreground mb-4 leading-tight">
                                 {title}
                             </h2>
-
-                            <div className="space-y-8">
-                                {/* Description Section */}
-                                <section>
-                                    <h4 className="text-foreground text-sm font-semibold mb-3 flex items-center gap-2">
-                                        <div className="w-1.5 h-4 bg-primary rounded-full" />
-                                        <span>About Project</span>
-                                    </h4>
-                                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed italic font-light">
-                                        {description}
-                                    </p>
-                                </section>
-
-                                {/* Tech Stack Section */}
-                                <section>
-                                    <h4 className="text-foreground text-sm font-semibold mb-4 flex items-center gap-2">
-                                        <div className="w-1.5 h-4 bg-primary rounded-full" />
-                                        <span>Tech Stack</span>
-                                    </h4>
-                                    <div className="flex flex-wrap gap-2">
-                                        {skills?.map((tech, idx) => (
-                                            <span
-                                                key={idx}
-                                                className="px-3 py-1.5 bg-primary/10 border border-primary/20 text-primary text-xs rounded-lg font-medium transition-colors hover:bg-primary/20"
-
-                                            >
-                                                {tech.label}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </section>
-                            </div>
                         </div>
 
-                        {/* Action Buttons */}
-                        <div className="p-6 md:p-8 border-t border-border bg-card/80 backdrop-blur-md">
-                            <div className="flex gap-4">
-                                <ButtonLink
-                                    url={project.live_link}
-                                    label="Live Demo"
-                                    icon={ExternalLink}
-                                    variant="primary"
-                                    className="flex-1 shadow-lg shadow-primary/20"
-                                />
-                                <ButtonLink
-                                    url={project.github_link}
-                                    label="Code"
-                                    icon={Github}
-                                    variant="outline"
-                                    className="flex-1"
-                                />
+                        {/* Description */}
+                        <section className="relative p-6 rounded-2xl bg-muted/50 border border-border">
+                            <Info className="absolute -top-3 -left-3 text-primary bg-card rounded-full p-1" size={28} />
+                            <h4 className="text-foreground text-sm font-bold mb-3 uppercase tracking-wider">About</h4>
+                            <p className="text-muted-foreground leading-relaxed font-medium">
+                                {description}
+                            </p>
+                        </section>
+
+                        {/* Tech Stack */}
+                        <section>
+                            <h4 className="text-foreground text-sm font-bold mb-5 uppercase tracking-wider flex items-center gap-2">
+                                <span>Technologies Used</span>
+                                <div className="flex-1 h-[1px] bg-border" />
+                            </h4>
+                            <div className="flex flex-wrap gap-2.5">
+                                {skills?.map((tech, idx) => (
+                                    <span
+                                        key={idx}
+                                        className="px-4 py-2 bg-card border border-border text-foreground/80 text-xs rounded-full font-semibold hover:border-primary/50 transition-all hover:scale-105 cursor-default"
+                                    >
+                                        {tech.label}
+                                    </span>
+                                ))}
                             </div>
-                        </div>
+                        </section>
+                    </div>
+                </div>
+
+                {/* Footer Actions */}
+                <div className="p-6 border-t border-border bg-muted/20">
+                    <div className="grid grid-cols-2 gap-4">
+                        <ButtonLink
+                            url={project.live_link}
+                            label="Launch Live"
+                            icon={ExternalLink}
+                            variant="primary"
+                            className="h-14 rounded-2xl shadow-xl shadow-primary/20"
+                        />
+                        <ButtonLink
+                            url={project.github_link}
+                            label="Source Code"
+                            icon={Github}
+                            variant="outline"
+                            className="h-14 rounded-2xl border-2"
+                        />
                     </div>
                 </div>
             </motion.div>
