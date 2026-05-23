@@ -1,12 +1,12 @@
 "use client";
 import Title from "../shared/SectionTitle";
-import { Project } from "@/src/types/project";
+import { Project } from "@/src/models/project";
 import { SingleProject } from "../ui";
 import { Github } from "lucide-react";
 import ScaleMotion from "../animations/ScaleMotion";
 import ButtonLink from "../buttons/ButtonLink";
-import { useState } from "react";
 import Loading from "@/src/app/Loading";
+// import { useState } from "react";
 // import ProjectService from "@/src/services/ProjectsServices";
 // import { useQueryCustom } from "@/src/Hooks/useQueryCustom";
 // import { Mock_Projects } from "@/src/constants/Mock_Projects";
@@ -14,7 +14,7 @@ import { useMockDataHook } from "@/src/Hooks/useMockData";
 import { MotionInView } from "../animations/MotionInView";
 
 const ProjectsSection = () => {
-    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    // const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const { data, isLoading, isError } = useMockDataHook()
     //     useQueryCustom(
     //     ['projects'],
@@ -29,7 +29,7 @@ const ProjectsSection = () => {
     if (isLoading && !data.projects) return <Loading />;
     return (
         <MotionInView delay={0.1} direction="up" >
-            <section id="works" className="container">
+            <section id="works" className="container  px-3 lg:px-10">
                 <Title
                     title="My Projects."
                     description="A collection of my projects as a Frontend Developer."
@@ -41,7 +41,7 @@ const ProjectsSection = () => {
                             key={project.id || index}
                             project={project}
                             index={index}
-                            onOpenDetails={() => setSelectedProject(project)}
+                        // onOpenDetails={() => setSelectedProject(project)}
                         />
                     )
                     )}

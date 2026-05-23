@@ -1,4 +1,4 @@
-import { experience } from "../types/experience";
+import { experience } from "../models/experience";
 
 export const Mock_Experience: experience[] = [
   {

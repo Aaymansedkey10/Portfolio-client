@@ -1,4 +1,4 @@
-import { AboutData } from "../types/about";
+import { AboutData } from "../models/about";
 
 export const Mock_About: AboutData[] = [
   {
@@ -9,138 +9,26 @@ export const Mock_About: AboutData[] = [
     updatedAt: "2026-03-02T09:18:51.228Z",
     publishedAt: "2026-03-02T09:18:51.240Z",
     titles: [
+      "Full Stack Developer",
+      "MEAN / MERN Stack Specialist",
       "Front End Developer",
-      "UI / UX Enthusiast",
-      "React Developer",
-      "Next Developer",
+      "React & Angular Developer",
     ],
     bio: [
       {
         type: "paragraph",
         children: [
-          {
-            type: "text",
-            text: "I am a ",
-          },
-          {
-            type: "text",
-            text: "Frontend Developer",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: " dedicated to crafting ",
-          },
-          {
-            type: "text",
-            text: "responsive",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: ", ",
-          },
-          {
-            type: "text",
-            text: "high-performance",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: ", and ",
-          },
-          {
-            type: "text",
-            text: "user experience ",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: "web applications. I specialize in turning complex designs into seamless digital experiences that are both intuitive and visually stunning. By leveraging ",
-          },
-          {
-            type: "text",
-            text: "React ",
-            bold: true,
-            italic: true,
-          },
-          {
-            type: "text",
-            text: "and ",
-          },
-          {
-            type: "text",
-            text: "Next.js",
-            italic: true,
-            bold: true,
-          },
-          {
-            type: "text",
-            text: ", I focus on writing ",
-          },
-          {
-            type: "text",
-            text: "clean",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: ", ",
-          },
-          {
-            type: "text",
-            text: "modular ",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: "code and building ",
-          },
-          {
-            type: "text",
-            text: "reusable components",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: ". I follow industry best practices to ensure every project is ",
-          },
-          {
-            type: "text",
-            text: "scalable",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: ", ",
-          },
-          {
-            type: "text",
-            text: "accessible",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: ", and ",
-          },
-          {
-            type: "text",
-            text: "performance",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: "-",
-          },
-          {
-            type: "text",
-            text: "optimized",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: ".",
-          },
+          // { type: "text", text: "Hi! I'm " },
+          // { type: "text", text: "Ayman Sedkey", bold: true },
+          { type: "text", text: "A " },
+          { type: "text", text: "Full-Stack Developer", bold: true },
+          { type: "text", text: " who loves turning ideas into complete, " },
+          { type: "text", text: "production-ready", bold: true },
+          { type: "text", text: " web applications. I specialize in building " },
+          { type: "text", text: "high-performance, SEO-friendly", bold: true },
+          { type: "text", text: " web apps using the " },
+          { type: "text", text: "MERN/MEAN stack", bold: true },
+          { type: "text", text: "." },
         ],
       },
       {
@@ -148,77 +36,46 @@ export const Mock_About: AboutData[] = [
         children: [
           {
             type: "text",
-            text: "Let's build something extraordinary together!",
+            text: "When I'm not coding, you'll find me exploring new web technologies, contributing to open-source, or working on ",
           },
+          { type: "text", text: "freelance projects", bold: true },
+          { type: "text", text: " for clients in " },
+          { type: "text", text: "Egypt and Saudi Arabia", bold: true },
+          { type: "text", text: "." },
+        ],
+      },
+      {
+        type: "paragraph",
+        children: [
+          { type: "text", text: "I thrive on " },
+          { type: "text", text: "clean code, solid architecture", bold: true },
+          { type: "text", text: ", and building solutions that make a " },
+          { type: "text", text: "real impact", bold: true },
+          { type: "text", text: "." },
         ],
       },
     ],
-    frameworks: ["React", "Next"],
+    frameworks: ["React", "Next", "Angular", "Node.js", "Mongo DB", "Express"],
     cv_url:
       "https://drive.google.com/file/d/1UEnEKxzZ-GAbD4iE63-SJUcjeKMOsD9w/view?usp=sharing",
     sub_bio: [
       {
         type: "paragraph",
         children: [
+          { type: "text", text: "Full Stack Developer (" },
+          { type: "text", text: "MEAN/MERN", bold: true },
+          { type: "text", text: ") with 1 year of experience. I build " },
+          { type: "text", text: "fast, SEO-friendly, pixel-perfect", bold: true },
           {
             type: "text",
-            text: "I build ",
+            text: " web apps from development to deployment. Certified by ",
           },
+          { type: "text", text: "NTI", bold: true },
+          { type: "text", text: ". Experienced with " },
+          { type: "text", text: "Saudi & Egyptian clients", bold: true },
           {
             type: "text",
-            text: "accessible",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: ", ",
-          },
-          {
-            type: "text",
-            text: "High quality",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: " web applications with a focus on ",
-          },
-          {
-            type: "text",
-            text: "usability ",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: "and ",
-          },
-          {
-            type: "text",
-            text: "performance",
-            bold: true,
-          },
-          {
-            type: "text",
-            text: ". I specialize in turning complex ideas into clean, efficient code using ",
-          },
-          {
-            type: "text",
-            text: "React ",
-            bold: true,
-            italic: true,
-          },
-          {
-            type: "text",
-            text: "and ",
-          },
-          {
-            type: "text",
-            text: "Next.js",
-            bold: true,
-            italic: true,
-          },
-          {
-            type: "text",
-            text: ".",
+            text: " in freelancing — dashboards, e-commerce, and landing pages. Let's turn your idea into a live website!",
           },
         ],
       },

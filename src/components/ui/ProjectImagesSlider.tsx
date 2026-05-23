@@ -1,4 +1,4 @@
-import { Project } from '@/src/types/project';
+import { Project } from '@/src/models/project';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react'
 import Image from 'next/image'

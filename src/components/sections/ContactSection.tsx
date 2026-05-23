@@ -1,11 +1,12 @@
 import Title from '../shared/SectionTitle';
 import { socialLinks } from '@/src/assets/SocailLinks';
-import SingleContactLink from '../shared/SingleContactLink';
+import SingleContactLink from '../ui/SingleContactLink';
 
 const ContactSection = () => {
 
     return (
         <section id='contact' className="py-24 relative overflow-hidden mb-5">
+
             <Title
                 title="Let's work together."
                 description="Have a project in mind, an opportunity, or just want to say Hi?"

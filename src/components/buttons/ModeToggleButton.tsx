@@ -14,7 +14,7 @@ export const ChangeButton = ({ icon, onClick }: ChangeButtonProps) => {
         <button
             onClick={onClick}
             aria-label="Toggle theme"
-            className="cursor-pointer"
+            className="cursor-pointer border border-primary p-2 rounded-full text-white bg-primary"
         >
             {icon}
         </button>
@@ -23,16 +23,15 @@ export const ChangeButton = ({ icon, onClick }: ChangeButtonProps) => {
 
 const ModeToggleButton = () => {
     const { setTheme, resolvedTheme } = useTheme();
-
     if (!resolvedTheme) return null;
 
     return (
         <ChangeButton
             icon={
                 resolvedTheme === "dark" ? (
-                    <Sun className="w-6 h-6" />
+                    <Sun className="h-5 w-5" />
                 ) : (
-                    <Moon className="w-6 h-6" />
+                    <Moon className="h-5 w-5" />
                 )
             }
             onClick={() =>

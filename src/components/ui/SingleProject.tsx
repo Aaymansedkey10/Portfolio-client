@@ -1,119 +1,100 @@
 "use client";
+
 import Image from "next/image";
 import { CodeXml, Link as LinkIcon } from "lucide-react";
 import Link from 'next/link';
-import { Project } from "@/src/types/project";
+import { Project } from "@/src/models/project";
 import { MotionInView } from "../animations/MotionInView";
-import { motion } from "framer-motion";
 
 interface SingleProjectProps {
     project: Project;
     index: number;
-    onOpenDetails: () => void;
+    // onOpenDetails: () => void;
 }
 
-const SingleProject = (
-    { project, index, onOpenDetails }: SingleProjectProps) => {
+const SingleProject = ({ project, index }: SingleProjectProps) => {
 
     if (!project || !project.featured) return null;
 
-    const { title, github_link, live_link, banner, skills } = project;
+    const { title, github_link, live_link, banner, skills, description } = project;
     const direction = index % 2 === 0 ? "left" : "right";
-    const duplicatedSkills = skills ? [...skills, ...skills] : [];
+    const filteredSkills = skills ? skills.slice(0, 4) : [];
 
     return (
         <article className="w-full h-full">
             <MotionInView direction={direction} delay={index * 0.1}>
                 <div
-                    className="group relative bg-secondary/20 rounded-2xl transition-all duration-500 overflow-hidden h-80 border border-border/50 hover:border-primary/20 shadow-lg hover:shadow-primary/10 cursor-pointer"
-                    onClick={onOpenDetails}
+                    className="group relative flex flex-col bg-secondary/10 rounded-2xl border border-primary/25 hover:border-primary/20 transition-all duration-500 overflow-hidden shadow-xl hover:shadow-primary/5 cursor-pointer h-full min-h-[460px] isolation-auto"
+                // onClick={onOpenDetails}
                 >
-                    <Image
-                        src={banner?.url || banner?.formats?.thumbnail?.url || "/placeholder.png"}
-                        alt={`${title} Preview`}
-                        fill
-                        priority={index < 2}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                        className="object-cover object-top transition-transform duration-1000 ease-out group-hover:scale-110 group-hover:rotate-1"
-                    />
 
-                    {/* Gradient Overlay on the card */}
-                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500 z-10" />
+                    <div className="absolute inset-0 w-0 bg-linear-to-r from-primary/5 to-primary/20 transition-all duration-750 ease-out group-hover:w-full z-0" />
 
-                    {/* Hover Content */}
-                    <div className="absolute inset-0 z-20 p-6 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center gap-4 transition-all duration-600 translate-y-100 group-hover:translate-y-0 backdrop-blur-sm bg-background/40">
-                        <h3 className="text-2xl font-black text-secondary-foreground text-center">
-                            {title}
-                        </h3>
+                    <div className="absolute top-0 left-1/2 h-0.5 w-0 bg-linear-to-r from-primary via-cyan-400 to-primary transition-all duration-500 group-hover:left-0 group-hover:w-full z-10" />
 
-                        {/* Quick Actions */}
-                        <div className="flex items-center gap-4">
-                            {github_link && (
-                                <Link
-                                    href={github_link}
-                                    target="_blank"
-                                    onClick={(e) => e.stopPropagation()}
-                                    className="p-3 rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-all duration-300 border border-white/20"
-                                    title="View Source Code"
+
+                    <div className="relative w-full h-48 overflow-hidden bg-secondary/20 z-10">
+                        <Image
+                            src={banner?.url || banner?.formats?.thumbnail?.url || "/placeholder.png"}
+                            alt={`${title} Preview`}
+                            fill
+                            priority={index < 2}
+                            unoptimized
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-linear-to-t from-background/40 via-transparent to-transparent opacity-80" />
+                    </div>
+
+                    <div className="flex flex-col flex-1 p-3 gap-4 justify-between relative z-10">
+                        <div className="space-y-2">
+                            <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 tracking-tight">
+                                {title}
+                            </h3>
+
+                            <p className="text-muted-foreground text-xs md:text-sm h-16 line-clamp-3 leading-relaxed font-sans">
+                                {description}
+                            </p>
+                        </div>
+
+
+                        <div className="grid grid-cols-2 gap-2 py-1">
+                            {filteredSkills.map((tech, idx) => (
+                                <span
+                                    key={idx}
+                                    className="inline-flex items-center gap-1.5 px-3 py-1 bg-secondary/40 border border-border/30 text-muted-foreground/90 text-[11px] font-mono font-medium rounded-full transition-all duration-300 group-hover:border-primary/20 group-hover:text-foreground group-hover:bg-primary/5"
                                 >
-                                    <CodeXml size={20} />
-                                </Link>
-                            )}
+                                    <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/40 group-hover:bg-primary transition-all duration-300 shadow-[0_0_6px_transparent] group-hover:shadow-primary/50" />
+                                    {tech.label}
+                                </span>
+                            ))}
+                        </div>
 
-                            {/* <button
-                                    onClick={(e) => { e.stopPropagation(); onOpenDetails(); }}
-                                    className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground font-bold flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary/30"
-                                >
-                                    <ExternalLink size={18} />
-                                    Details
-                                </button> */}
-
+                        <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-3 pt-4 border-t border-border/40 mt-auto">
                             {live_link && (
                                 <Link
                                     href={live_link}
                                     target="_blank"
                                     onClick={(e) => e.stopPropagation()}
-                                    className="p-3 rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-all duration-300 border border-white/20"
-                                    title="Live Demo"
+                                    className="flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-secondary/40 border border-border/60 hover:border-primary/40 text-foreground/80 hover:text-primary text-xs font-semibold transition-all duration-300 group/btn"
                                 >
-                                    <LinkIcon size={20} />
+                                    <LinkIcon size={14} className="text-primary transition-transform group-hover/btn:scale-110" />
+                                    <span>Live Demo</span>
+                                </Link>
+                            )}
+
+                            {github_link && (
+                                <Link
+                                    href={github_link}
+                                    target="_blank"
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-secondary/40 border border-border/60 hover:border-primary/40 text-foreground/80 hover:text-primary text-xs font-semibold transition-all duration-300 group/btn"
+                                >
+                                    <CodeXml size={14} className="text-muted-foreground group-hover/btn:text-primary transition-transform group-hover/btn:scale-110" />
+                                    <span>GitHub</span>
                                 </Link>
                             )}
                         </div>
-
-                        {/* Tech Stack Marquee on Hover */}
-
-                        <div
-                            className="relative w-full overflow-hidden pt-4"
-                            style={{
-                                maskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)',
-                                WebkitMaskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)'
-                            }}
-                        >
-                            <motion.div
-                                className="flex gap-3 w-max"
-                                animate={{ x: ["0%", "-50%"] }}
-                                transition={{
-                                    duration: 20,
-                                    repeat: Infinity,
-                                    ease: "linear",
-                                }}
-                            >
-                                {duplicatedSkills.map((tech, idx) => (
-                                    <span
-                                        key={idx}
-                                        className="px-3 py-1 bg-white/10 border border-white/10 text-white/90 text-[10px] uppercase tracking-widest rounded-md whitespace-nowrap backdrop-blur-md"
-                                    >
-                                        {tech.label}
-                                    </span>
-                                ))}
-                            </motion.div>
-                        </div>
-                    </div>
-
-                    {/* Bottom Title (Visible when not hovered) */}
-                    <div className="absolute bottom-0 left-0 right-0 p-5 z-15 group-hover:opacity-0 transition-opacity duration-300">
-                        <p className="text-white font-bold text-lg truncate drop-shadow-md">{title}</p>
                     </div>
                 </div>
             </MotionInView>

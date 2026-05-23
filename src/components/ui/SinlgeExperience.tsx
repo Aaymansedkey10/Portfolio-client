@@ -1,11 +1,16 @@
 import { CheckCircle2, Calendar, Building2 } from 'lucide-react'
 import { MotionInView } from '../animations/MotionInView';
-import { experience } from '@/src/types/experience';
+import { experience } from '@/src/models/experience';
 
 const SingleExperience = ({ job_title, company_name, is_current, end_date, start_date, job_role }: experience) => {
     return (
         <>
-            <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 py-2 group w-full border shadow-primary/20 border-secondary rounded-lg p-6 lg:p-10 bg-secondary/10 hover:bg-secondary/50 hover:shadow-md transition-all duration-300 cursor-pointer">
+            <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 py-2 group w-full border shadow-primary/20 border-secondary rounded-lg p-6 lg:p-10 shadow-inset bg-secondary/10 hover:bg-secondary/50 hover:shadow-md transition-all duration-300 cursor-pointer z-10">
+                {/* <div className="absolute top-0 left-1/2 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:left-0 group-hover:w-full z-5"></div> */}
+                <div className="absolute inset-0 w-0 bg-linear-to-r from-primary/5 to-primary/20 transition-all duration-750 ease-out group-hover:w-full z-0" />
+
+                <div className="absolute top-0 left-1/2 h-0.5 w-0 bg-linear-to-r from-primary via-cyan-400 to-primary transition-all duration-500 group-hover:left-0 group-hover:w-full z-10" />
+
                 <div className="lg:col-span-3 border-b lg:border-b-0 border-primary/20 pb-4 lg:pb-0">
                     <MotionInView direction="left">
                         <div className="flex flex-col items-start justify-baseline gap-3">

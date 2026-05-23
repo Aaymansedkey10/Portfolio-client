@@ -2,7 +2,7 @@
 import { X, ExternalLink, Github, Layers, Info } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Project } from "@/src/types/project";
+import { Project } from "@/src/models/project";
 import ButtonLink from "../buttons/ButtonLink";
 import ProjectImagesSlider from "./ProjectImagesSlider";
 import { Button } from "../buttons/Button";

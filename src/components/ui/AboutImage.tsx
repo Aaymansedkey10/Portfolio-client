@@ -1,5 +1,4 @@
-import { StrapiImage } from '@/src/types/globals';
-import { Code2 } from 'lucide-react';
+import { StrapiImage } from '@/src/models/globals';
 import Image from 'next/image';
 const AboutImage = ({ alternativeText, url }: StrapiImage) => {
     return (
@@ -14,7 +13,7 @@ const AboutImage = ({ alternativeText, url }: StrapiImage) => {
                 priority
             />
             {/* Floating Badge */}
-            <div
+            {/* <div
                 className="absolute -bottom-8 -right-6 bg-background border border-border p-4 rounded-xl shadow-2xl animate-bounce transition-all duration-200 hidden lg:block"
             >
                 <div className="flex items-center gap-3">
@@ -26,7 +25,7 @@ const AboutImage = ({ alternativeText, url }: StrapiImage) => {
                         <p className="font-bold">Front-End Dev</p>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -1,10 +1,10 @@
-import { Project } from "../types/project";
+import { Project } from "../models/project";
 
 export const Mock_Projects: Project[] = [
   {
     id: 28,
     documentId: "lmsqqo5v6t49qgwv8iy5d7kg",
-    title: "Furniture E-commerce (Team Work)",
+    title: "E-commerce (Team Work)",
     github_link: "https://github.com/Essam2004hekal/Furni-test",
     live_link: "https://furni-test.vercel.app/",
     createdAt: "2026-01-25T14:00:32.644Z",

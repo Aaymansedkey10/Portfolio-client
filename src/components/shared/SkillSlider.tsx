@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { skill } from "@/src/types/skill";
+import { skill } from "@/src/models/skill";
 import { SingleSkill } from "../ui";
 
 interface SliderProps {

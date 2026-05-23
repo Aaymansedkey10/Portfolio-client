@@ -1,9 +1,9 @@
 "use client"
 import Title from "../shared/SectionTitle"
-// import { ExperienceServices } from "@/src/services"
 import SingleExperience from "../ui/SinlgeExperience"
-import { experience } from "@/src/types/experience"
+import { experience } from "@/src/models/experience"
 import Loading from "@/src/app/Loading";
+// import { ExperienceServices } from "@/src/services"
 // import { Mock_Experience } from "@/src/constants/Mock_Experience"
 // import { useQueryCustom } from "@/src/Hooks/useQueryCustom"
 import { useMockDataHook } from "@/src/Hooks/useMockData"
@@ -20,7 +20,7 @@ const ExperienceSection = () => {
         throw new Error("API Limit Reached and no Mock Data found");
     }
     return (
-        <section id="experience" className="experience space-y-5">
+        <section id="experience" className="experience space-y-5  px-3 lg:px-10">
             <Title title="Experience." description="Professional milestones and hands on experience in developing applications, collaborating with teams, and delivering clean, maintainable code." />
             {
                 data.experience?.map((experience: experience) => (

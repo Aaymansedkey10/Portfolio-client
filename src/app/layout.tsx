@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`antialiased px-5 lg:px-25 ${jakarta.variable} bg-background text-foreground 
+      <body className={`antialiased ${jakarta.variable} bg-background text-foreground 
         selection:bg-primary/30 selection:text-primary/90
       `}>
         <Analytics />
