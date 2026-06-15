@@ -10,9 +10,11 @@ export const Mock_About: AboutData[] = [
     publishedAt: "2026-03-02T09:18:51.240Z",
     titles: [
       "Full Stack Developer",
-      "MEAN / MERN Stack Specialist",
+      "MEARN Stack Specialist",
       "Front End Developer",
+      "Back End Developer",
       "React & Angular Developer",
+      "Node JS Developer",
     ],
     bio: [
       {
@@ -27,7 +29,7 @@ export const Mock_About: AboutData[] = [
           { type: "text", text: " web applications. I specialize in building " },
           { type: "text", text: "high-performance, SEO-friendly", bold: true },
           { type: "text", text: " web apps using the " },
-          { type: "text", text: "MERN/MEAN stack", bold: true },
+          { type: "text", text: "MEARN stack", bold: true },
           { type: "text", text: "." },
         ],
       },
@@ -57,20 +59,24 @@ export const Mock_About: AboutData[] = [
     ],
     frameworks: ["React", "Next", "Angular", "Node.js", "Mongo DB", "Express"],
     cv_url:
-      "https://drive.google.com/file/d/1UEnEKxzZ-GAbD4iE63-SJUcjeKMOsD9w/view?usp=sharing",
+      "https://drive.google.com/file/d/1hUcU4v9jBDBWI61WmopTbcelmXlUgQLr/view?usp=sharing",
     sub_bio: [
       {
         type: "paragraph",
         children: [
           { type: "text", text: "Full Stack Developer (" },
-          { type: "text", text: "MEAN/MERN", bold: true },
+          { type: "text", text: "MEARN", bold: true },
           { type: "text", text: ") with 1 year of experience. I build " },
           { type: "text", text: "fast, SEO-friendly, pixel-perfect", bold: true },
           {
             type: "text",
             text: " web apps from development to deployment. Certified by ",
           },
-          { type: "text", text: "NTI", bold: true },
+          {
+            type: "text",
+            text: "National Telecommunication Institute (NTI)",
+            bold: true,
+          },
           { type: "text", text: ". Experienced with " },
           { type: "text", text: "Saudi & Egyptian clients", bold: true },
           {

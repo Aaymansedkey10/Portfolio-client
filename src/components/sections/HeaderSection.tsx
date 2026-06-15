@@ -79,11 +79,12 @@ const HeaderSection = () => {
                         <MotionInView direction="right" delay={0.3}>
                             <Button label="Contact Me" func={() => scrollTo("contact")} home={true} icon={<Mail size={18} />} />
                         </MotionInView>
-
+                        {/* ttps://drive.usercontent.google.com/download?id=1UEnEKxzZ-GAbD4iE63-SJUcjeKMOsD9w&export=download */}
+                        {/* https://drive.google.com/file/d/1hUcU4v9jBDBWI61WmopTbcelmXlUgQLr/view?usp=sharing */}
                         <MotionInView direction="up" delay={0.4}>
                             <Button
                                 label="Download CV"
-                                func={() => window.open("https://drive.usercontent.google.com/download?id=1UEnEKxzZ-GAbD4iE63-SJUcjeKMOsD9w&export=download", "_blank")}
+                                func={() => window.open("https://drive.google.com/file/d/1hUcU4v9jBDBWI61WmopTbcelmXlUgQLr/view?usp=sharing", "_blank")}
                                 home={true}
                                 icon={<Download size={18} />}
                             />
